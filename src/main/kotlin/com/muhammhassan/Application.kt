@@ -5,14 +5,26 @@ import com.muhammhassan.plugins.configureMonitoring
 import com.muhammhassan.plugins.configureRouting
 import com.muhammhassan.plugins.configureSerialization
 import com.muhammhassan.route.registerTargetRoute
+import com.muhammhassan.utils.Response
+import com.muhammhassan.utils.ValidationException
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.statuspages.*
+import io.ktor.server.response.*
 
 fun main(args: Array<String>) {
     return EngineMain.main(args)
 }
 
 fun Application.module() {
+
+    install(StatusPages) {
+        exception<ValidationException> { call, cause ->
+            call.respond(HttpStatusCode.BadGateway, Response<Nothing>("failed", message = cause.reason))
+        }
+    }
+
     configureSerialization()
     configureMonitoring()
     configureRouting()
