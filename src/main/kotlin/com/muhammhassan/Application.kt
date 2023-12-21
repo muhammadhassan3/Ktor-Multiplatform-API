@@ -6,17 +6,17 @@ import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
-fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
-        .start(wait = true)
+fun main(args: Array<String>) {
+    return EngineMain.main(args)
 }
 
 fun Application.module() {
-//    configureSockets()
     configureSerialization()
     configureMonitoring()
-//    configureHTTP()
-//    configureSecurity()
     configureRouting()
-    DatabaseConfig.init()
+
+    val username = environment.config.propertyOrNull("ktor.application.database.username")?.getString() ?: ""
+    val password = environment.config.propertyOrNull("ktor.application.database.password")?.getString() ?: ""
+
+    DatabaseConfig.init(username, password)
 }
