@@ -1,0 +1,9 @@
+ktor:
+  deployment:
+    port: 80
+  application:
+    modules:
+      - com.muhammhassan.ApplicationKt.module
+    database:
+      username: "DATABASE_USERNAME"
+      password: "DATABASE_PASSWORD"
