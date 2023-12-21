@@ -35,6 +35,7 @@ dependencies {
     implementation("io.ktor:ktor-server-sessions-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("io.ktor:ktor-server-request-validation:$ktor_version")
+    implementation("io.ktor:ktor-server-status-pages:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("mysql:mysql-connector-java:$mysql_version")
     implementation("io.ktor:ktor-server-config-yaml-jvm:$java_yaml")
