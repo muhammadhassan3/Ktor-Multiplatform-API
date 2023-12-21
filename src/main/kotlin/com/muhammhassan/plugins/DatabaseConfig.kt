@@ -12,7 +12,7 @@ object DatabaseConfig {
         Database.connect(url, driver, username, password)
 
         transaction {
-            SchemaUtils.create(Target)
+            SchemaUtils.createMissingTablesAndColumns(Target)
         }
     }
 }
