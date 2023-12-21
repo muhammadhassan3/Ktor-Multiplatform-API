@@ -1,9 +1,10 @@
 package com.muhammhassan
 
 import com.muhammhassan.plugins.DatabaseConfig
-import com.muhammhassan.plugins.*
+import com.muhammhassan.plugins.configureMonitoring
+import com.muhammhassan.plugins.configureRouting
+import com.muhammhassan.plugins.configureSerialization
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main(args: Array<String>) {
