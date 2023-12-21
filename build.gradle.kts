@@ -3,10 +3,12 @@ val kotlin_version: String by project
 val logback_version: String by project
 val exposed_version: String by project
 val mysql_version: String by project
+val java_yaml: String by project
 
 plugins {
     kotlin("jvm") version "1.9.21"
     id("io.ktor.plugin") version "2.3.7"
+    kotlin("plugin.serialization") version "1.9.21"
 }
 
 group = "com.muhammhassan"
@@ -34,7 +36,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("mysql:mysql-connector-java:$mysql_version")
-    implementation("io.ktor:ktor-server-config-yaml-jvm:2.1.1-eap-494")
+    implementation("io.ktor:ktor-server-config-yaml-jvm:$java_yaml")
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
