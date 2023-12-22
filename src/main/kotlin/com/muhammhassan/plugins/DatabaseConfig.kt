@@ -1,7 +1,7 @@
 package com.muhammhassan.plugins
 
-import com.muhammhassan.repository.database.scheme.Performance
-import com.muhammhassan.repository.database.scheme.Target
+import com.muhammhassan.repository.database.scheme.Performances
+import com.muhammhassan.repository.database.scheme.Targets
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -13,7 +13,7 @@ object DatabaseConfig {
         Database.connect(url, driver, username, password)
 
         transaction {
-            SchemaUtils.createMissingTablesAndColumns(Target, Performance)
+            SchemaUtils.createMissingTablesAndColumns(Targets, Performances)
         }
     }
 }
