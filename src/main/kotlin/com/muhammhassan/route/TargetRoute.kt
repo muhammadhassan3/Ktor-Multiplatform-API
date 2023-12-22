@@ -64,7 +64,7 @@ private fun Route.saveTarget() {
                 it[this.time] = "$month-$year"
             }
             if (result.insertedCount > 0) {
-                call.respond(Response<Nothing>("success", message = "Data berhasil ditambahkan"))
+                call.respond(HttpStatusCode.Created, Response<Nothing>("success", message = "Data berhasil ditambahkan"))
             } else call.respond(
                 HttpStatusCode.BadRequest,
                 Response<Nothing>("failed", message = "Data pada tanggal tersebut sudah tersedia")
