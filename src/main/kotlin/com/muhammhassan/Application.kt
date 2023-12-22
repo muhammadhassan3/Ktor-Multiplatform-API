@@ -23,6 +23,11 @@ fun Application.module() {
         exception<ValidationException> { call, cause ->
             call.respond(HttpStatusCode.BadGateway, Response<Nothing>("failed", message = cause.reason))
         }
+
+        exception<Exception> { call, cause ->
+            call.respond(HttpStatusCode.InternalServerError, Response<Nothing>("failed", message = "Terjadi masalah internal pada server"))
+
+        }
     }
 
     configureSerialization()
