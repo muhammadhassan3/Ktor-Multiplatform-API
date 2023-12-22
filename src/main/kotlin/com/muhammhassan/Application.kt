@@ -4,8 +4,6 @@ import com.muhammhassan.plugins.DatabaseConfig
 import com.muhammhassan.plugins.configureMonitoring
 import com.muhammhassan.plugins.configureRouting
 import com.muhammhassan.plugins.configureSerialization
-import com.muhammhassan.route.registerPerformanceRoute
-import com.muhammhassan.route.registerTargetRoute
 import com.muhammhassan.utils.Response
 import com.muhammhassan.utils.ValidationException
 import io.ktor.http.*
@@ -27,7 +25,10 @@ fun Application.module() {
 
         exception<Exception> { call, cause ->
             cause.printStackTrace()
-            call.respond(HttpStatusCode.InternalServerError, Response<Nothing>("failed", message = "Terjadi masalah internal pada server"))
+            call.respond(
+                HttpStatusCode.InternalServerError,
+                Response<Nothing>("failed", message = "Terjadi masalah internal pada server")
+            )
 
         }
     }
