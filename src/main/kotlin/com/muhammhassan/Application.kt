@@ -26,6 +26,7 @@ fun Application.module() {
         }
 
         exception<Exception> { call, cause ->
+            cause.printStackTrace()
             call.respond(HttpStatusCode.InternalServerError, Response<Nothing>("failed", message = "Terjadi masalah internal pada server"))
 
         }
