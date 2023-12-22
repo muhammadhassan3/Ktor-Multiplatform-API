@@ -4,6 +4,7 @@ import com.muhammhassan.plugins.DatabaseConfig
 import com.muhammhassan.plugins.configureMonitoring
 import com.muhammhassan.plugins.configureRouting
 import com.muhammhassan.plugins.configureSerialization
+import com.muhammhassan.route.registerPerformanceRoute
 import com.muhammhassan.route.registerTargetRoute
 import com.muhammhassan.utils.Response
 import com.muhammhassan.utils.ValidationException
@@ -34,7 +35,6 @@ fun Application.module() {
     configureMonitoring()
     configureRouting()
 
-    registerTargetRoute()
 
     val username = environment.config.propertyOrNull("ktor.application.database.username")?.getString() ?: ""
     val password = environment.config.propertyOrNull("ktor.application.database.password")?.getString() ?: ""
