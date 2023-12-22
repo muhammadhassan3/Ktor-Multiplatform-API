@@ -79,6 +79,8 @@ private fun Route.editTarget() {
         val id = call.parameters["id"]?.toInt() ?: 0
         val target = call.receiveParameters()["target"]?.toInt() ?: 0
 
+        if(id < 1) throw ValidationException("Silahkan masukkan nilai id yang valid")
+
         if (target < 2500) throw ValidationException("Target yang kamu tetapkan tidak dapat dicairkan")
 
         newSuspendedTransaction {
@@ -97,6 +99,8 @@ private fun Route.editTarget() {
 private fun Route.deleteTarget() {
     delete("/target/{id}") {
         val id = call.parameters["id"]?.toInt() ?: 0
+        if(id < 1) throw ValidationException("Silahkan masukkan nilai id yang valid")
+
         newSuspendedTransaction {
             val result = Targets.deleteIgnoreWhere { Targets.id eq id }
             if (result > 0) call.respond(Response<Nothing>("success", message = "Data berhasil dihapus"))
