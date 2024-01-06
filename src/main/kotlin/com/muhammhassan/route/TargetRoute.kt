@@ -64,7 +64,10 @@ private fun Route.saveTarget() {
                 it[this.time] = "$month-$year"
             }
             if (result.insertedCount > 0) {
-                call.respond(HttpStatusCode.Created, Response<Nothing>("success", message = "Data berhasil ditambahkan"))
+                call.respond(
+                    HttpStatusCode.Created,
+                    Response<Nothing>("success", message = "Data berhasil ditambahkan")
+                )
             } else call.respond(
                 HttpStatusCode.BadRequest,
                 Response<Nothing>("failed", message = "Data pada tanggal tersebut sudah tersedia")
@@ -79,7 +82,7 @@ private fun Route.editTarget() {
         val id = call.parameters["id"]?.toInt() ?: 0
         val target = call.receiveParameters()["target"]?.toInt() ?: 0
 
-        if(id < 1) throw ValidationException("Silahkan masukkan nilai id yang valid")
+        if (id < 1) throw ValidationException("Silahkan masukkan nilai id yang valid")
 
         if (target < 2500) throw ValidationException("Target yang kamu tetapkan tidak dapat dicairkan")
 
@@ -99,7 +102,7 @@ private fun Route.editTarget() {
 private fun Route.deleteTarget() {
     delete("/target/{id}") {
         val id = call.parameters["id"]?.toInt() ?: 0
-        if(id < 1) throw ValidationException("Silahkan masukkan nilai id yang valid")
+        if (id < 1) throw ValidationException("Silahkan masukkan nilai id yang valid")
 
         newSuspendedTransaction {
             val result = Targets.deleteIgnoreWhere { Targets.id eq id }
